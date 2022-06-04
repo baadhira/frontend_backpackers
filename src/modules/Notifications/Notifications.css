@@ -1,0 +1,12 @@
+
+.request{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-evenly;
+}
+.notification{
+    background-color:white;
+    height: 300px;
+    width:600px;
+    overflow-y: scroll;
+}

@@ -1,0 +1,65 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  z-index: 50;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+
+  .header_holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+  
+  
+}
+
+
+@media screen and (max-width: 600px) {
+  .header {
+    display: none
+  }
+}
+.dropbtn{
+  padding:0px !important;
+  width: 100px !important;
+}
+
+.dropdown{
+  margin:0 !important;
+}
+.dropdown-content a{
+  cursor: pointer;
+}
+
+.popupalbum {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.801);
+  
+
+}
+
+ 
+.popupalbum i {
+  position: fixed;
+  top: 100px;
+  right: 200px;
+  color: white;
+  font-size: 2rem;
+}

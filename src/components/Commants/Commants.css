@@ -1,0 +1,33 @@
+.commants {
+    background-color: rgb(255, 255, 255);
+    width: 40%;
+    height: 90vh;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.close_icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+
+.scrollBar::-webkit-scrollbar {
+    width: 6px;
+    height: 10px;
+}
+
+.scrollBar::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.scrollBar::-webkit-scrollbar-thumb {
+    background-color: rgb(192, 192, 192);
+    border-radius: 10px;
+}

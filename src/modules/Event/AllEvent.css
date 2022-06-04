@@ -1,0 +1,25 @@
+.event{
+    width:96%;
+    margin:auto;
+}
+.paginationButton{
+    background-color: white;
+    border: 1px solid black;
+    border-radius:100%;
+    width:40px;
+    height:40px;
+    padding:10px;
+    margin:10px;
+}
+
+.event .black{
+    background-color: black;
+    color:white;
+
+}
+
+.event .white{
+    background-color: white;
+    color:black;
+
+}

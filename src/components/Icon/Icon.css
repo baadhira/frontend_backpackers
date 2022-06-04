@@ -1,0 +1,19 @@
+.icon {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+ 
+  cursor: pointer;
+
+}
+
+.icon a {
+  color: white ;
+  text-decoration: none;
+  font-size: 1rem;
+  margin: 40px 0;
+}

@@ -1,0 +1,11 @@
+.createEvent{
+    background-color:wheat;
+    padding: 30px;
+    width:40%;
+    height:fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:20px;
+    flex-direction:column;
+}

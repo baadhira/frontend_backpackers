@@ -1,0 +1,41 @@
+.carousel_banner {
+    border-radius: 50px;
+    background-color: red;
+    padding: 50px;
+}
+
+.carousel_banner img {
+    border-radius: 50px !important;
+    background-color: red;
+    padding: 50px;
+}
+
+
+.carousel-inner {
+
+    border-radius: 50px !important;
+    background-color: red;
+    padding: 50px;
+}
+
+.carousel-item {
+
+    border-radius: 50px !important;
+    background-color: red;
+    padding: 50px;
+}
+
+.d-block {
+    border-radius: 50px !important;
+}
+
+.carousel-control-prev  {
+    border-radius: 50px;
+    background-color: blue;
+    padding: 50px;
+}
+
+.carousel-control-prev .carousel-control-prev-icon {
+    border-radius: 50px;
+    background-color: blue;
+}

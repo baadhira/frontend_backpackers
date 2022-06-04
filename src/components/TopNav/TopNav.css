@@ -1,0 +1,41 @@
+.top_nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  width: 100%;
+}
+
+.top_nav .active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.top_nav .active h4 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.top_nav .not_active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.top_nav .not_active h4 {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .top_nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+  }
+}

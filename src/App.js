@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import React from 'react'
+
 import './App.css';
+import { Header } from './components/Header/Header';
+
+import {QueryClient,QueryClientProvider} from 'react-query'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { elements } from './Router/elements';
+import { Router } from './Router/Router';
 
 function App() {
+
+  const queryclient = new QueryClient();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <QueryClientProvider client={queryclient}>
+    <div>
+      <Header/>
+      {elements.map(data=>
+        <Router isAuth={data.isAuth} path={data.path} element={data.element}/>
+        )}
     </div>
-  );
+    </QueryClientProvider>
+  )
 }
 
-export default App;
+export default App

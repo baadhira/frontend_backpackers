@@ -1,0 +1,88 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 80px;
+  background-color: white;
+}
+
+.profile_header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: wheat;
+  width: 100%;
+}
+
+.hero-image {
+  /* background-image: url("/w3images/photographer.jpg"); */
+  background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+}
+
+.boxes {
+  width: 200px;
+  height: 100px;
+  background-color: black;
+  color: #fff;
+  padding: 20px;
+  position: relative;
+  margin: 40px;
+  float: left;
+  border-radius: 5px 10px 10px 10px;
+}
+
+.boxes.arrows-left:after {
+  content: " ";
+  position: absolute;
+  left: -15px;
+  top: 15px;
+  border-top: 15px solid transparent;
+  border-right: 15px solid black;
+  border-left: none;
+  border-bottom: 15px solid transparent;
+}
+
+.three-dots:after {
+  cursor: pointer;
+  color: #fcc;
+  content: "\2807";
+  font-size: 20px;
+  padding: 0 5px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a div {
+  padding: 2px;
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+  .profile {
+    width: 100%;
+    margin: 0;
+  }
+}

@@ -1,0 +1,215 @@
+.font_size {
+  width: fit-content;
+  color: rgb(0, 0, 0);
+  font-weight: normal;
+  text-transform: capitalize;
+  margin: 0;
+  padding: 0;
+  text-align: start;
+  overflow: hidden;
+}
+
+.h1 {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.h2 {
+  font-size: 2.8rem;
+  font-weight: bold;
+}
+
+.h3 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.h4 {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.h5 {
+  font-size: 1rem !important;
+  color: gray;
+  overflow: hidden;
+  line-height: 2rem !important;
+}
+
+.h6 {
+  font-size: 0.8rem;
+  color: gray;
+  overflow: hidden;
+  text-transform: lowercase;
+}
+
+/* 
+
+@media only screen and (max-width: 1201px) {
+
+
+    .h1 {
+        font-size: 4rem;
+    }
+
+    .h2 {
+        font-size: 2.3rem;
+    }
+
+    .h3 {
+        font-size: 1.7rem;
+    }
+
+
+    .h4 {
+        font-size: 1.3rem;
+
+    }
+
+    .h5 {
+        font-size: 1rem;
+    }
+
+    .h6 {
+        font-size: 0.8rem;
+    }
+
+
+}
+
+
+@media only screen and (max-width: 1025px) {
+
+    .h1 {
+        font-size: 4rem;
+    }
+
+    .h2 {
+        font-size: 2.3rem;
+    }
+
+    .h3 {
+        font-size: 1.7rem;
+    }
+
+
+    .h4 {
+        font-size: 1.3rem;
+
+    }
+
+    .h5 {
+        font-size: 1rem;
+    }
+
+    .h6 {
+        font-size: 0.8rem;
+    }
+}
+
+
+
+
+@media only screen and (max-width: 769px) {
+
+
+
+    .h1 {
+        font-size: 4rem;
+    }
+
+    .h2 {
+        font-size: 2.3rem;
+    }
+
+    .h3 {
+        font-size: 1.7rem;
+    }
+
+
+    .h4 {
+        font-size: 1.3rem;
+
+    }
+
+    .h5 {
+        font-size: 1rem;
+    }
+
+    .h6 {
+        font-size: 0.8rem;
+    }
+
+
+}
+
+
+
+
+@media only screen and (max-width: 481px) {
+
+
+
+    .h1 {
+        font-size: 3rem;
+    }
+
+    .h2 {
+        font-size: 2.3rem;
+    }
+
+    .h3 {
+        font-size: 1.5rem;
+    }
+
+
+    .h4 {
+        font-size: 1.1rem;
+
+    }
+
+    .h5 {
+        font-size: 1rem;
+    }
+
+    .h6 {
+        font-size: 0.8rem;
+    }
+
+
+
+}
+
+
+
+@media only screen and (max-width: 320px) {
+
+
+    .h1 {
+        font-size: 4rem;
+    }
+
+    .h2 {
+        font-size: 2.3rem;
+    }
+
+    .h3 {
+        font-size: 1.7rem;
+    }
+
+
+    .h4 {
+        font-size: 1.3rem;
+
+    }
+
+    .h5 {
+        font-size: 1rem;
+    }
+
+    .h6 {
+        font-size: 0.8rem;
+    }
+
+
+} */

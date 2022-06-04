@@ -1,0 +1,57 @@
+.grid {
+    width: 100%;
+    margin: auto;
+    display: grid;
+    background-color: white;
+    grid-template-columns: auto;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 50px;
+}
+
+
+
+@media screen and (min-width: 481px) {
+
+    .grid {
+
+        grid-template-columns: auto;
+    }
+
+}
+
+
+@media screen and (min-width: 881px) {
+
+    .grid {
+
+        grid-template-columns: auto auto;
+
+
+    }
+
+}
+
+
+
+@media screen and (min-width: 1081px) {
+
+    .grid {
+
+        grid-template-columns: auto auto auto auto;
+
+
+    }
+
+}
+
+
+@media screen and (min-width: 1581px) {
+
+    .grid {
+
+        grid-template-columns: auto auto auto auto;
+
+    }
+
+}
