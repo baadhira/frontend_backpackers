@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import "./TopNav.css";
 
-import { H4 } from "../Text/Text";
+import { H4, H5, H6 } from "../Text/Text";
 import { Icon } from "../Icon/Icon";
 
 export const TopNav = () => {
@@ -39,7 +39,7 @@ export const TopNav = () => {
       id: 4,
       icon: "fa-solid fa-message",
       text: "Inbox",
-      url: "/messages",
+      url: "/chat",
     },
     {
       id: 5,
@@ -57,13 +57,13 @@ export const TopNav = () => {
           {data.url === location.pathname || data.url2 === location.pathname ? (
             <div className="active" onClick={() => navigate(data.url)}>
               {/* <i class={data.icon}></i> */}
-              <Icon backgroundColor="dodgerblue" icon={data.icon}/>
+             <H5>{data.text}</H5>
 
             </div>
           ) : (
             <div className="not_active" onClick={() => navigate(data.url)}>
               {/* <i class={data.icon}></i> */}
-              <Icon backgroundColor="dodgerblue" icon={data.icon}/>
+              <H5>{data.text}</H5>
               
             </div>
           )}

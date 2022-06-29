@@ -32,6 +32,33 @@ export const getOneProfile = (id) => {
   const response = axios.get(`${BASE_URL}api/user/userprofile/${id}`,config)
   return response
 }
+
+export const getAllProfile = () => {
+  var token = localStorage.getItem("authToken");
+  const config = {
+    headers: {
+      "Accept":"application/json",
+    Authorization: `Bearer ${token}`
+    }
+
+  }
+  const response = axios.get(`${BASE_URL}api/user/patchprofile/`,config)
+  return response
+}
+
+
+export const getOnePeople = (id) => {
+  var token = localStorage.getItem("authToken");
+  const config = {
+    headers: {
+      "Accept":"application/json",
+    Authorization: `Bearer ${token}`
+    }
+
+  }
+  const response = axios.get(`${BASE_URL}api/user/patchprofile/${id}`,config)
+  return response
+}
 export const getAlbum = (id) => {
   var token = localStorage.getItem("authToken");
   const config = {

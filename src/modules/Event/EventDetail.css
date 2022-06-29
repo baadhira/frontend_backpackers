@@ -8,31 +8,91 @@
 .event-top-col {
   margin-top: 20%;
 
-  border-radius: 50px;
-  height:fit-content;
-  background-color: #b8c6db;
-background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
-box-shadow: 4px 4px 7px 2px rgba(0,0,0,0.4);
-max-width: 250px;
+  border-radius: 10px;
+  height:200px;
+  /* background-color: #b8c6db;
+  background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%); */
+  box-shadow: 4px 4px 7px 2px rgba(0,0,0,0.4);
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
 
+}
+
+.event-top-bottom{
+  margin-top: 20%;
+
+  border-radius: 10px;
+  height:200px;
+  /* background-color: #b8c6db;
+  background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%); */
+  box-shadow: 4px 4px 7px 2px rgba(0,0,0,0.4);
+  max-width: 313px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+.eventright{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.event-bottom-col{
+  margin-top: 50px;
+  border-radius: 10px;
+  height:200px;
+  background-color: black;
+  /* background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%); */
+  box-shadow: 4px 4px 7px 2px rgba(0,0,0,0.4);
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.eventDescription{
+  margin-top:20px;
+  width: 550px;
+  height: 100px;
+  /* background-color:red; */
+  background-color:#b8c6db;
+  background-image:linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+  border-radius:20px
+}
+
+
+.eventDetails{
+  margin-top:20px;
+  width: 550px;
+  height: 80px;
+  background-color:white;
+  box-shadow: 4px 4px 7px 2px rgba(0,0,0,0.4);
+
+  /* background-color:#b8c6db; */
+  /* background-image:linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%); */
+  /* border-radius:20px */
 }
 .organizer{
   text-align: center;
   text-shadow: 2px 2px grey;
+  color: white;
   font-weight: bold;
 
 }
 .organizer-img{
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     border-radius: 100%;
-    margin:0px 25%;
+    /* margin:0px 25%; */
 
 }
-.organizer-name{
-   margin-left:35%
-}
+
 .fa-hourglass-start{
   color:black;
   opacity: 70%;
@@ -148,6 +208,10 @@ background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
   max-width: 250px;
   max-height: 250px;
 
+}
+.eventdetail-img{
+  width: 500px;
+  height: 300px;
 }
 
 

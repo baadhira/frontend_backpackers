@@ -7,7 +7,7 @@ import { getEvents } from "../../modules/Event/method/Method";
 import { H4, H5, H6 } from "../Text/Text";
 import { Flex } from "../UI/Flex/Flex";
 
-export const SearchEvent = ({ searchTerm, searchResult }) => {
+export const SearchEvent = ({ searchTerm, searchResult,clearSearch }) => {
   const { data: event } = useQuery("event", getEvents);
 
   console.log("event", event);
@@ -15,7 +15,7 @@ export const SearchEvent = ({ searchTerm, searchResult }) => {
   return (
     <div>
       <Row>
-        <div style={searchResult} className="searchResult">
+        <div style={searchResult} className="searchResult"  onClick={() => clearSearch(false)}>
           {event?.data
             ?.filter((ev) => {
               if (searchTerm === "") {

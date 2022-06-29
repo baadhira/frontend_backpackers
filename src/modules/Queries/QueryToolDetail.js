@@ -149,7 +149,7 @@ export const QueryToolDetail = () => {
                     src={require("../../assets/profile_pic/johnson-martin-zpq2DMidOY0-unsplash.jpg")}
                     alt=""
                   />
-                  <div className="box arrow-left">
+                  <div className="box arrow-left" style={{height:"10px"}}>
                     <Flex flexDirection="column">
                       <H5 color="black">{data.author.username}</H5>
                       {/* <H6 color="black" fontWeight="normal">Asked On :{data.createddate}</H6> */}
@@ -163,17 +163,17 @@ export const QueryToolDetail = () => {
                         Asked On :{data.createddate}
                       </h6>
                     </Flex>
+                    <div >
                     {data.question}
+                    </div>
                     <Flex>
-                      <Icon
-                        margin="10px"
-                        text="12"
-                        backgroundColor="dodgerblue"
-                      />
+                    
                       <H5
                         margin="10px"
                         icon="fa-solid fa-comments"
-                        color="black"
+                        color="white"
+                        textDecoration="underline"
+
                       >
                         View Answers
                       </H5>

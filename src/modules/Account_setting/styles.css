@@ -1,9 +1,13 @@
 .App {
     font-family: sans-serif;
     background: white;
-    color: black;
+    color: dodgerblue;
     height: 100vh;
     box-sizing: border-box;
+    width:800px;
+    margin:60px auto auto auto;
+  box-shadow: 4px 4px 7px 2px rgba(0,0,0,0.4);
+
   }
   
   .react-tabs {
@@ -23,7 +27,7 @@
     margin: 0;
     padding: 0;
     color: white;
-    background: #a39193;
+    background: dodgerblue;
   }
   
   .react-tabs__tab {
@@ -35,10 +39,10 @@
   }
   
   .react-tabs__tab--selected {
-    background: #1c1d1f;
+    background: white;
     border-color: #1c1d1f;
-    border-left: 4px solid #6eb800;
-    color: white;
+    border-left: 4px solid black;
+    color: black;
   }
   
   .react-tabs__tab-panel {

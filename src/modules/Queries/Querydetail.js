@@ -4,7 +4,7 @@ import { DarkBtn } from '../../components/Button/Button';
 import { Icon } from '../../components/Icon/Icon';
 import { H1, H4, H5, H6 } from '../../components/Text/Text';
 import { Flex } from '../../components/UI/Flex/Flex';
-import { getCommentsQuery, getOneQuery, getQueries, getReplyComment } from './MethodQuery/MethodQueries'
+import { getComments, getCommentsQuery, getOneQuery, getQueries, getReplyComment } from './MethodQuery/MethodQueries'
 import jwt_decode from "jwt-decode";
 import { TextArea } from '../../components/Input/Input';
 import axios from 'axios';
@@ -14,17 +14,36 @@ import { InputReply } from './InputReply';
 import { Card } from 'react-bootstrap';
 import { DropdownIcon } from '../../components/Dropdown/Dropdown';
 import { ReportPopup } from './ReportPopup';
+import { Answer } from './Answer';
+import ReactTimeAgo from 'react-time-ago'
+import { ReportComment } from './ReportComment';
+
+
+
 export const Querydetail = () => {
   const[querydetail,setQuerydetail] =useState()
   const [comment, setComment] = useState();
+  const [commentnew, setCommentnew] = useState();
+  const [loadmore,setLoadmore]=useState([]);
   const [addComment, setAddcoment] = useState();
   const [replycomment,setReplycomment] = useState();
   const [com,setCom] = useState();
   const [suggested,setSuggested] = useState();
   const [report,setReport] = useState(false);
+  const [answer,setAnswer] = useState(false)
+  const [parentid,setParentid] = useState()
+  const [commentid,setCommentid] = useState()
+
+  const [discId,setDiscid]=useState()
+  const [pop,setPop] = useState(false);
+
   
   const { id } = useParams();
   
+  console.log("parentid", parentid);
+  // const daysBetween = new Date().getDate() - new Date('2020-07-15T13:29:15.524486Z').getDate()
+                                                       
+  // console.log("daysBetween",daysBetween)
 
 
   useEffect(() => {
@@ -40,12 +59,41 @@ export const Querydetail = () => {
     getReplyComment().then((res)=>{
       setReplycomment(res.data)
     });
+    getComments().then((res)=>{
+      setCommentnew(res.data)
+      console.log("///////////////////////////////////////////////");
+      console.log("comments",res.data);
+      console.log("///////////////////////////////////////////////");
+
+    });
     getQueries().then((response)=>{
       setSuggested(response.data)
-      console.log("getqueries",response.data)
 
     })
   },[setQuerydetail,setComment,setSuggested])
+
+  useEffect(() => {
+
+
+    if (loadmore.length < commentnew?.filter(fil=>fil.from_discussion===querydetail?.id && fil.parent===null).length)
+
+        setLoadmore([...loadmore, true])
+
+})
+
+  const ParentId = (pid) => {
+    setParentid(pid)
+    setCom(true)
+  }
+  const CommentId = (cid) => {
+    setCommentid(cid)
+    setPop(true)
+  }
+
+  // const discussionId=(disId)=>{
+  //   setLoadmore(!loadmore)
+  //   setDiscid(disId)
+  // }
 
   const onSubmit = () => {
     const config = {
@@ -92,6 +140,8 @@ export const Querydetail = () => {
          window.location.reload()
        });
    };
+
+ 
   const DeletComment = (discussion_id) =>{
     const config = {
       headers: {
@@ -103,7 +153,7 @@ export const Querydetail = () => {
       window.location.reload();
     })
   }
-
+  console.log("loadmore",loadmore);
   var token = localStorage.getItem("authToken");
   var decoded = jwt_decode(token);
   return (
@@ -127,6 +177,7 @@ export const Querydetail = () => {
                     <H5 fontWeight="bold" margin="10px" color="dodgerblue">
           {querydetail?.author.username}
         </H5>
+      {console.log("querydetail id",querydetail?.id)}
         {/* <i class="fa-solid fa-ellipsis"></i> */}
         <div className="querydate" > <h5>Asked on : {querydetail?.createddate}</h5>
         </div>
@@ -144,11 +195,12 @@ export const Querydetail = () => {
         <H5 fontWeight="lighter" margin="10px" color="black">
           {querydetail?.question}
         </H5>
+        {console.log("querydetail id",querydetail?.id)}
 
 
-        {report?
+ 
+           {report?
     <div className="popup-album">
-    <i className="fa fa-close" onClick={()=>setReport(false)}></i>
     <ReportPopup setReport={setReport} />
     </div>: null
     }
@@ -172,115 +224,57 @@ export const Querydetail = () => {
     
     </div>
     <div className="comments">
-        
-        {/* <Flex flexDirection="column" margin="0px 0px 0px 40px">
-        <H4>Replies</H4>
-          {comment?.map((data) => (
-            <Flex
-              margin="10px"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <img
-                style={{
-                  width: "50px",
-                  height: "50px",
-                  borderRadius: "100%",
-                }}
-                src={require("../../assets/profile_pic/johnson-martin-zpq2DMidOY0-unsplash.jpg")}
-                alt=""
-              />
-
-              <Flex flexDirection="column">
-                <H5 margin="0 5px" color="black" fontWeight="bold">
-                  {data.author.username}
-                </H5>
-
-                <H6 margin="0 5px" color="black">
-                  {data.text}
-                </H6>
-                <Icon
-          // onClick={(comment_id) => {
-          //   DeleteComment((comment_id = data.id));
-          // }}
-          margin="40px 180px"
-          className="fa-solid fa-reply"
-          color="grey"
-        />
-        
-
-        <div>
-                <H5 margin="0 5px" color="black" fontWeight="bold">
-                  {data.author.username}
-                </H5>
-                {replycomment?.filter(fil=>fil.discussion_reply.id===data.id).map(data=>
-                <H6 margin="0 5px" color="black">
-                 {data.text}
-                </H6>
-)}
-      
        
-              </div>
-       
-              </Flex>
-              
-     { data.author.id === decoded.user_id || querydetail?.author.id === decoded.user_id?
-
-              <Icon onClick={(discussion_id)=>{DeletComment(discussion_id=data.id)}}
-                margin-left="50px"
-                icon="fa-solid fa-trash-can"
-            
-                color="black"
-              />
-              :null}
-            </Flex>
-          ))}
-        </Flex>
-
-        <Flex margin="0px 0px 0px 40px" justifyContent="center" alignItems="center">
-          <img
-            style={{
-              width: "50px",
-              height: "50px",
-              borderRadius: "100%",
-            }}
-            src={require("../../assets/profile_pic/johnson-martin-zpq2DMidOY0-unsplash.jpg")}
-            alt=""
-          />
-          <Flex margin="0px 0px 0px 40px" >
-            <TextArea width="80vh" 
-              onChange={(e) => setAddcoment(e.target.value)}
-              placeholder="write a comment"
-            ></TextArea>
-
-            <DarkBtn margin="40px 0px 0px 20px"onClick={onSubmit}>Send</DarkBtn>
-          </Flex>
-        </Flex> */}
 
 <div class="comment-thread">
-  <h3>Answers</h3>
+  <Flex>
+  <h3>Answers</h3> <DarkBtn marginLeft="50px" onClick={()=>setAnswer(true)}><i  className="fa-solid fa-plus"></i> Add Answer</DarkBtn>
+  </Flex>
 
 <div class="comment" id="comment-1">
-{comment?.map((data) => (
+  {console.log("comment filter",commentnew?.filter(fil=>fil.from_discussion===querydetail?.id))}
+  {/* {console.log("reply set",commentnew?.filter(fil=>fil.from_discussion===querydetail?.id).map(data=>data.reply_set.map(data=>data.comment)))} */}
+  {console.log("reply set",commentnew?.filter(fil=>fil.from_discussion===querydetail?.id).map(data=>data.reply_set.map(data=>data.id)))}
+
+{console.log("commentnew length",commentnew?.filter(fil=>fil.from_discussion===querydetail?.id && fil.parent===null).length)}
+
+
+{commentnew?.filter(fil=>fil.from_discussion===querydetail?.id && fil.parent===null).map((data,index) => (
   <>
   <div class="comment-heading">
     
       <div class="comment-info">
-          <a href="#" class="comment-author">{data.author.username}</a>
+          <a href="#" class="comment-author">{data.user.username}</a>
           <p class="m-0">
-               4 days ago
+          {/* {new Date().getDate() - new Date(data.date).getDate()} days ago */}
+          <ReactTimeAgo date={data.date} locale="en-US"/>
           </p>
       </div>
   </div>
 
   <div class="comment-body">
-      <p>
-      {data.text}
+      <p style={{width:"50% !important" }}>
+      {data.comment}
       </p>
-      <button onClick={()=>setCom(true)} type="button">Reply</button>
-      <button type="button">Flag</button>
-  </div>
+  {/* // const daysBetween = new Date().getDate() - new Date('2020-07-15T13:29:15.524486Z').getDate() */}
+      {console.log("date",new Date().getDate() - new Date(data.date).getDate())}
 
+      <button 
+      onClick={(pid)=>ParentId(pid = data.id)}  
+      type="button">Reply</button>
+      <button type="button"  onClick={(cid)=>CommentId(cid = data.id)} >Flag</button>
+  </div>
+  {/* <button>Load more...":"Load Less..."</button> */}
+  <a style={{color:"dodgerblue",cursor: "pointer"}}
+   onClick={()=>setLoadmore(prevState =>
+    prevState.map((item, idx) => idx === index ? !item : item))}>
+      
+    {loadmore[index]===false?"Load Less...":"Load more..."}
+    </a>
+  {loadmore[index]===false?
+  data.reply_set.map(data=>
+
+ 
   <div class="replies">
     
       <div class="comment" id="comment-2">
@@ -296,70 +290,66 @@ export const Querydetail = () => {
                   </button>
               </div>
               <div class="comment-info">
-                  <a href="#" class="comment-author">randomperson81</a>
+                  <a href="#" class="comment-author">{data.user.username}</a>
                   <p class="m-0">
-                      3 days ago
+                 {/* { new Date().getDate() - new Date(data.date).getDate()} days ago */}
+          <ReactTimeAgo date={data.date} locale="en-US"/>
+
                   </p>
               </div>
           </div>
-
+         
           <div class="comment-body">
-              <p>
-                  Took the words right out of my mouth!
+              <p >
+                  {data.comment}
               </p>
-              <button type="button">Reply</button>
-              <button type="button">Flag</button>
+              <button type="button" onClick={(pid)=>ParentId(pid = data.id)} >Reply</button>
+              <button type="button" onClick={(cid)=>CommentId(cid = data.id)}>Flag</button>
           </div>
+          
       </div>
     
 
      
   </div>
+  )
+  :null
+} 
   </>
 ))}
 </div>
+{/* <div className="bottomright" style={{display: 'flex', flexDirection: 'row',justifyContent: 'space-around',alignItems:"center",backgroundColor:"white",left: "252px",boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}>
 
+
+  <textarea placeholder="Enter your answer....." style={{border: 'none',width:"690px",backgroundColor:"white",outline: "none"}} id="w3review" name="w3review" rows="4" cols="50">.</textarea>
+  <Icon  backgroundColor="dodgerblue" icon="fa-solid fa-paper-plane"/>
+  </div> */}
 </div>
       </div>
       {com?
     <div className="popupalbum">
     <i className="fa fa-close"  onClick={() => setCom(false)}></i>
-    <InputReply/>
+    <InputReply commentnew={commentnew} querydetail={querydetail} parentid={parentid}/>
+    </div>: null
+    }
+         {answer?
+    <div className="popcomment">
+    <i className="fa fa-close"  onClick={() => setAnswer(false)}></i>
+    <Answer querydetail={querydetail}/>
     </div>: null
     }
    </div> 
    <div className="suggested_disc" >
-   {suggested?.slice(0, 3).map((data) => (
-              // <div
-              //   class="card"
-              //   // onClick={() => {
-              //   //   navigate(`/eventdetail/${data.id}`);
-              //   //   // OneEvent();
-              //   // }}
-              // >
-              //   <img
-              //     class="card-img-top"
-              //     alt="Card image cap"
-              //     src={data.question}
-              //   />
-              //   <div class="card-body">
-              //     <h5 class="card-title">{data.author.username}</h5>
-              //   </div>
-              // </div>
-              <Card style={{ width: '18rem',marginBottom: '20px'}}>
-  <Card.Body>
-    <Card.Title>Card Title</Card.Title>
-    <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-    <Card.Text>
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </Card.Text>
-    <Card.Link href="#">Card Link</Card.Link>
-    <Card.Link href="#">Another Link</Card.Link>
-  </Card.Body>
-</Card>
-            ))}
+  
    </div>
+
+   {pop?
+    <div className="popup-album">
+    {/* <i className="fa fa-close" onClick={() => setPop(true)}></i> */}
+
+    <ReportComment setPop={setPop} commentid={commentid} />
+    </div>: null
+    }
    </div>
   )
 }

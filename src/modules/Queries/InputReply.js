@@ -7,11 +7,18 @@ import jwt_decode from "jwt-decode";
 import { useParams } from 'react-router-dom';
 import { Icon } from '../../components/Icon/Icon';
 
-export const InputReply = () => {
-  const [addComment, setAddcoment] = useState();
+export const InputReply = ({commentnew,querydetail,parentid}) => {
+  const [comment, setComment] = useState();
+  const [from_discussion,setFromdiscussion]=useState()
+  const [user,setUser] =useState()
+  const [parent,setParent] = useState()
   var token = localStorage.getItem("authToken");
   var decoded = jwt_decode(token);
   const { id } = useParams();
+  console.log("ccccccccccccccccccccccccccccccccccccccc");
+  console.log("parentid inputreply", parentid);
+  console.log("ccccccccccccccccccccccccccccccccccccccc");
+
   
 
   const onSubmit = () => {
@@ -24,17 +31,19 @@ export const InputReply = () => {
 
     axios
       .post(
-        `${BASE_URL}discussionapi/discussioncomments/`,
+        `${BASE_URL}discussionapi/commentpost/`,
 
         {
-          text: addComment,
-          discussion: id,
+          from_discussion: querydetail.id,
+          comment: comment,
+          user:decoded.user_id,
+          parent:parentid
         },
         config
       )
       .then(() => {
         window.location.reload();
-        setAddcoment("");
+     
       });
   };
 
@@ -42,7 +51,7 @@ export const InputReply = () => {
   return (
     <div style={{display: 'flex', flexDirection: 'row',justifyContent: 'center',alignItems:"center"}}>
         <TextArea width="500px"
-            onChange={(e) => setAddcoment(e.target.value)}
+            onChange={(e) => setComment(e.target.value)}
             
             placeholder="write a comment"
           ></TextArea>

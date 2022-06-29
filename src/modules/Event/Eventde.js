@@ -16,12 +16,14 @@ import { TabSwitcher } from "./TabSwitcher";
 import axios from "axios";
 import { BASE_URL } from "../../BaseUrl";
 import { Grid } from "../../components/UI/Grid/Grid";
+import { useJwtDecode } from '../../Hooks/useJwtDecode';
 
 function Eventde() {
     const [eventdetails, setEventdetails] = useState();
   const [comment, setComment] = useState();
   const [joinedpeople, setJoinedpeople] = useState();
   const { id } = useParams();
+  const user_id=useJwtDecode()
 
   useEffect(() => {
     getoneEvents(id).then((res) => {
@@ -199,7 +201,7 @@ function Eventde() {
                         {data.text}
                       </H6>
                     </Flex>
-           { data.author.id === decoded.user_id || eventdetails?.author.id === decoded.user_id ?
+           { data.author.id ===user_id || eventdetails?.author.id ===user_id ?
 
                     <Icon onClick={(comment_id)=>{DeleteComment(comment_id=data.id)}}
                       margin-left="50px"
@@ -234,7 +236,7 @@ function Eventde() {
               <DarkBtn margin="0px 100px"onClick={onSubmit}>Comment</DarkBtn>
             </div>
           }
-          child3={eventdetails?.author.id === decoded.user_id ?
+          child3={eventdetails?.author.id ===user_id ?
               <H6>You Are The Organizer</H6>:
               <H5>Join</H5>}
         />

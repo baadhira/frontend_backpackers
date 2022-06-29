@@ -25,7 +25,7 @@ import { H4, H5, H6 } from "../Text/Text";
 import { Flex } from "../UI/Flex/Flex";
 import { getQueries } from "../../modules/Queries/MethodQuery/MethodQueries";
 
-export const SearchQuery = ({ searchTerm, searchResult }) => {
+export const SearchQuery = ({ searchTerm, searchResult,clearSearch }) => {
   const { data: query } = useQuery("query", getQueries);
 
   console.log("query", query);
@@ -33,7 +33,7 @@ export const SearchQuery = ({ searchTerm, searchResult }) => {
   return (
     <div>
       <Row>
-        <div style={searchResult} className="searchResult">
+        <div style={searchResult} className="searchResult"  onClick={() => clearSearch(false)}>
           {query?.data
             ?.filter((ev) => {
               if (searchTerm === "") {

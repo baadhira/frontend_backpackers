@@ -13,7 +13,6 @@ import { Notifications } from "../../modules/Notifications/Notifications";
 export const Header = () => {
   const navigate = useNavigate();
 
-  const [explore,setExplore] = useState("Explore")
   const[not_details,setNotdetails] = useState(false)
 
 
@@ -22,7 +21,7 @@ export const Header = () => {
       <div className="header_holder">
         <img width="60px" src={require("../../assets/images/logo/logo.png")} />
 
-        <SearchBar explore={explore} text="Where are you going?" />
+        <SearchBar  text="Where are you going?" />
       </div>
 
       {/* <div className="dropdown">
@@ -42,21 +41,7 @@ export const Header = () => {
           </a>
         </div>
       </div> */}
-      <DropdownBtn text={explore}>
-      <a  onClick={() =>setExplore('Find Host')}>
-            Find Host
-          </a>
-          <a  onClick={() => setExplore("Find Query")}>
-            Find Query
-          </a>
-          <a  onClick={() => setExplore("Find Event")}>
-            Find Event
-          </a>
-          <a  onClick={() => setExplore("Find User")}>
-            Find User
-          </a>
 
-      </DropdownBtn>
 
       <div className="header_holder">
         <TopNav />

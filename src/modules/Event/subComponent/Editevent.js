@@ -41,29 +41,41 @@ export const Editevent = ({ setEditevent,eventid }) => {
   const [image, setImage] = useState();
   const [location, setLocation] = useState(edevent?.location);
   console.log("data in edit event",edevent)
-  const onSubmit = () => {
+
+
+    const onSubmit = () => {
     const config = {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     };
+console.log(image);
+    console.log("-==========================");
+    console.log(image[0])
+
+    console.log("-==========================");
+
+  
+    const formData = new FormData();
+
+
+    formData.append("event_name", event_name);
+    formData.append("image", image[0], "image.png");
+    formData.append("location", location);
+    formData.append("start_date", start_date);
+    formData.append("start_time", start_time);
+
+    formData.append("end_date", end_date);
+    formData.append("end_time", end_time);
+    formData.append("limit_attendees", limit_attendees);
+    
+    formData.append("description", description);
+
 
     axios
-      .patch(
-        `${BASE_URL}eventapi/events/${eventid}/`,
-
-        {
-          event_name,
-          image,
-          location,
-          start_date,
-          start_time,
-          end_date,
-          end_time,
-          limit_attendees,
-          description,
-        },
+      .post(
+        `${BASE_URL}eventapi/events/${eventid}/`,formData,
         config
       )
       .then(() => {

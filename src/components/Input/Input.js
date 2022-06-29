@@ -32,7 +32,7 @@ export const Password = (props) => {
 
 export const TextArea = (props) => {
     return (
-        <textarea style={{ width: props.width,margin: props.margin}} onChange={props.onChange} className='input textarea' placeholder={props.placeholder}></textarea>
+        <textarea style={{ width: props.width,margin: props.margin,marginLeft:props.marginLeft}} onChange={props.onChange} className='input textarea' placeholder={props.placeholder}></textarea>
     )
 }
 
@@ -43,7 +43,7 @@ export const DropDown = (props) => {
 
     return (
 
-        <select style={{ border:props.border, flex: props.flex, width: props.width, margin: props.margin }} onChange={props.onChange} className='input dropdown' name="" id="">
+        <select style={{ border:props.border, flex: props.flex, width: props.width, margin: props.margin }} onChange={props.onChange} defaultValue={props.defaultValue} className='input dropdown' name="" id="">
 
             {props.children}
 

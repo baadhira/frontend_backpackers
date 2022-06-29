@@ -8,6 +8,8 @@ import { H2, H3, H4 } from '../../components/Text/Text'
 import { Flex } from '../../components/UI/Flex/Flex'
 import{ AllEvent} from '../Event/AllEvent'
 import { getEvents } from '../Event/method/Method'
+import { Message } from '../Messages/Message'
+import { AllPeople } from '../People/AllPeople'
 import Place from '../Place/Place'
 import { AllQueries } from '../Queries/AllQueries'
 import { Queries } from '../Queries/Queries'
@@ -29,6 +31,8 @@ export const Home =() =>{
   return (
       
     <div className="home">
+        {/* <Message/> */}
+       
         <div className="banner">
             <SwiperCarousel>
                 <SwiperSlide>
@@ -67,6 +71,12 @@ export const Home =() =>{
        <H3 style={{position: 'absolute'}}margin="10px">POPULAR QUERIES</H3>
     <DarkBtn margin="10px">VIEW MORE QUERIES</DarkBtn>
     <QueryToolDetail/>
+       </div>
+
+       <div className='allEvents'>
+       <H3 style={{position: 'absolute'}}margin="10px">POPULAR PEOPLE</H3>
+    <DarkBtn margin="10px">VIEW MORE PEOPLE</DarkBtn>
+    <AllPeople/>
        </div>
       
     

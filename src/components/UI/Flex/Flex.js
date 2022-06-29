@@ -26,7 +26,8 @@ export const Flex = (props) => {
             overflowY: props.overflowY,
             overflowX: props.overflowX,
             borderRadius: props.borderRadius,
-            backgroundImage:props.backgroundImage
+            backgroundImage:props.backgroundImage,
+            marginLeft:props.marginLeft
         }} key={props.key} className={`${props.className} flex`}>
             {props.children}
         </div>

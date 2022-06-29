@@ -61,3 +61,19 @@ export const getReplyComment = (id) => {
   return response
 }
 
+
+
+export const getComments = (id) => {
+  var token = localStorage.getItem("authToken");
+  const config = {
+      
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  // discussion/<int:discussion_id>/discussioncomments/
+  const response=axios.get(`${BASE_URL}discussionapi/comment/`,config);
+
+  return response
+}

@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import { Flex } from '../../components/UI/Flex/Flex';
 import { Friend_request } from './Friend_request';
 import { Host_requests } from './Host_requests';
+import { HostRequestReplies } from './HostRequestReplies';
 
 export const Notifications = () => {
   var token = localStorage.getItem("authToken");
@@ -77,6 +78,8 @@ export const Notifications = () => {
           <Tab label="Friend Requests" {...a11yProps(0)} />
           <Tab label="Host Requests" {...a11yProps(1)} />
           <Tab label="Feedbacks" {...a11yProps(2)} />
+          <Tab label="Host Request Replies" {...a11yProps(3)} />
+
 
           {/* <Tab label="Feedbacks" {...a11yProps(2)} />
           <Tab label="Item Four" {...a11yProps(3)} /> */}
@@ -92,12 +95,10 @@ export const Notifications = () => {
       <TabPanel value={value} index={2}>
         Feedbacks
       </TabPanel>
-      {/* <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
+  
       <TabPanel value={value} index={3}>
-        Item Four
-      </TabPanel> */}
+        <HostRequestReplies/>
+      </TabPanel>
     </Box>
     </Flex>
   </div>

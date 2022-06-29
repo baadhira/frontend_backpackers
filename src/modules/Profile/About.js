@@ -20,23 +20,22 @@ export const About = () => {
       };
   return (
     <>
-    <H5 color="black" ><i>Hosting Status : <b>{about?.hosting_check}</b> </i></H5> <Icon
+     {/* <Icon
             // onClick={() => setEditpro()}     
             margin="20px 700px"
             className="fa-solid fa-pen-to-square"
             backgroundColor="dodgerblue"
-          />
-    <H5 color="black" ><i>Occupation :<b> {about?.occupation} </b></i></H5>
-    <H5 color="black" ><i>Education :<b> {about?.education} </b></i></H5>
-    <H5 color="black" ><i>Languages :<b> {about?.prefered_language} </b></i></H5>
-    <H5 color="black" ><i>About me :<b> {about?.about_me} </b></i></H5>
-
-    <H5 color="black" ><i>Motto :<b> {about?.motto} </b></i></H5>
-
-    <H5 color="black" ><i>Interests :<b> {about?.interests} </b></i></H5>
-    <H5 color="black" ><i>Favourite Movies :<b> {about?.fav_movies} </b></i></H5>
-    <H5 color="black" ><i>Countries Visited :<b> {about?.countries_visited} </b></i></H5>
-    <H5 color="black" ><i>Countries Lived :<b> {about?.countries_lived} </b></i></H5>
+          /> */}
+    <H5 color="black" >Hosting Status : <b>{about?.hosting_check}</b> </H5>
+    <H5 color="black" >Occupation :<b> {about?.occupation} </b></H5>
+    <H5 color="black" >Education :<b> {about?.education} </b></H5>
+    <H5 color="black" >Languages :<b> {about?.prefered_language} </b></H5>
+    <H5 color="black" >About me :<b> {about?.about_me} </b></H5>
+    <H5 color="black" >Motto :<b> {about?.motto} </b></H5>
+    <H5 color="black" >Interests :<b> {about?.interests} </b></H5>
+    <H5 color="black" >Favourite Movies :<b> {about?.fav_movies} </b></H5>
+    <H5 color="black" >Countries Visited :<b> {about?.countries_visited} </b></H5>
+    <H5 color="black" >Countries Lived :<b> {about?.countries_lived} </b></H5>
     </>
   )
 }

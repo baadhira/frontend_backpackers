@@ -101,6 +101,7 @@ export const H5 = (props) => {
             padding: props.padding,
             borderRadius: props.borderRadius,
             backgroundImage: props.backgroundImage,
+            textDecoration: props.textDecoration
         
 
 

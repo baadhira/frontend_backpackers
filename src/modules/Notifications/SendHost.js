@@ -105,6 +105,7 @@ export const SendHost = ({setSendhost}) => {
     
         <Text
           onChange={(e) => setLeavingtime(e.target.value)}
+          width="100%"
           margin="4px"
           placeholder="Leaving Time"
            type="time"
@@ -113,6 +114,7 @@ export const SendHost = ({setSendhost}) => {
     
         <Text
           onChange={(e) => setHostmsg(e.target.value)}
+          width="100%"
           margin="4px"
           placeholder="Enter Message(min 100 words)"
        
@@ -120,6 +122,7 @@ export const SendHost = ({setSendhost}) => {
         
         <Text
           onChange={(e) => setNotravellers(e.target.value)}
+          width="100%"
           margin="4px"
           placeholder="Enter no of hosts"
        

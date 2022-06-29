@@ -79,4 +79,21 @@ export const getJoiners =()=> {
 
 
 
+export const getEventComments = (id) => {
+  var token = localStorage.getItem("authToken");
+  const config = {
+      
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  // discussion/<int:discussion_id>/discussioncomments/
+  const response=axios.get(`${BASE_URL}eventapi/eventcomment/`,config);
+
+  return response
+}
+
+
+
 

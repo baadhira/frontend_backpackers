@@ -1,0 +1,12 @@
+.editAccount{
+    /* background-color:wheat; */
+    padding: 30px;
+    width:90%;
+    /* margin: auto; */
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:20px;
+    flex-direction:column;
+}

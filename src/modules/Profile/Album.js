@@ -18,12 +18,18 @@ export const Album = () => {
     var decoded = jwt_decode(token);
     const [album,setAlbum] =useState()
     const[albumdetails,setAlbumDetails] = useState(false)
+    const [itemdata,setItemdata] = useState()
     useEffect(() => {
         getAlbum().then((response)=>{
             setAlbum(response.data)
             // console.log("album data",response.data)
         })
     },[setAlbum])
+
+    const Popup=(itemid)=>{
+      setItemdata(itemid)
+      setAlbumDetails(true)
+    }
     // console.log("filtered data",album?.filter(fil=>fil.user.id===decoded.user_id))
   return (
     <>
@@ -41,7 +47,8 @@ export const Album = () => {
           height="150"
           image={item.image}
           alt="green iguana"
-          onClick={()=>setAlbumDetails(true)}
+          onClick={(itemid)=>Popup(itemid=item)}
+          
         />
         <CardContent>
           <Typography gutterBottom variant="h7" component="div">
@@ -53,16 +60,16 @@ export const Album = () => {
           </Typography> */}
         </CardContent>
       </CardActionArea>
+  
     </Card>
         </ImageListItem>
       )): null}
 
-     
     </ImageList>
     {albumdetails?
     <div className="popup-album">
-    <i className="fa fa-close"></i>
-    <AlbumDetail />
+    {/* <i style={{color:"white",margin:"auto"}} onClick={()=>setAlbumDetails(false)} className="fa fa-close"></i> */}
+    <AlbumDetail itemdata={itemdata} setAlbumDetails={setAlbumDetails} />
     </div>: null
     }
     </>

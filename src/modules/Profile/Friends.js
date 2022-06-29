@@ -5,15 +5,17 @@ import { PrimaryBtn, SecondaryBtn } from '../../components/Button/Button'
 import { Flex } from '../../components/UI/Flex/Flex'
 import { getFriendRequests } from './Method_profile'
 import Popup from 'reactjs-popup';
+import jwt_decode from "jwt-decode";
+
 import 'reactjs-popup/dist/index.css';
-export const Friends = () => {
+export const Friends = ({profile}) => {
   var token = localStorage.getItem("authToken");
+  var decoded = jwt_decode(token);
 
   const [friends,setFriends] =useState()
   const FriendRequest = useCallback(() => {
     getFriendRequests().then((res) =>{
         setFriends(res.data)
-         console.log("freinds are..",res)
        })
   });
   useEffect(() => {
@@ -35,14 +37,17 @@ export const Friends = () => {
     <>
         <table>
         {friends?.filter(
-        (fil)=>fil.accept===true)?
-    (friends?.filter((fil)=>fil.accept===true)
+        (fil)=>fil.accept===true && fil.reciever.id===decoded.user_id)
+    // (friends?.filter((fil)=>fil.accept===true)
     ?.map(data=>(
             <tr>
+              
                 <td>{data.sender.username}</td>
+                {profile.id===decoded.user_id?
                 <td onClick={(req_id)=>DeleteFriend(req_id=data.id)}><SecondaryBtn padding="5px 10px">Unfriend</SecondaryBtn></td>
+              :null}
             </tr>
-            ))):null}
+            ))}
         </table>
     {/* // <Flex>
     //     <Flex width="50%" margin="5px">{data.sender.username}</Flex>

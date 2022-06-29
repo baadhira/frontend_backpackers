@@ -21,21 +21,29 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../BaseUrl";
 import { DropdownIcon } from "../../components/Dropdown/Dropdown";
+import { ReportProfile } from "./ReportProfile";
+import { DarkBtn } from "../../components/Button/Button";
+import { AddAlbum } from "./AddAlbum";
 
 export const Profile = () => {
   const [profile, setProfile] = useState();
   const [editpro, setEditpro] = useState();
   const [frndrequest, SetFrndRequest] = useState();
+  const [popupprofile,setPopprfile]= useState(false)
   const { id } = useParams();
+  const [addalbum,setAlbum] =useState(false)
+
 
   var token = localStorage.getItem("authToken");
   var decoded = jwt_decode(token);
+
+  console.log("frnds in profile",frndrequest?.filter(fil=>fil.reciever.id===decoded.user_id).length);
+
   
 
   useEffect(() => {
     getFriendRequests().then((res) => {
       SetFrndRequest(res.data);
-      console.log("friend requests details...", res.data);
     });
   }, [SetFrndRequest]);
 
@@ -64,7 +72,7 @@ export const Profile = () => {
       config
     );
   };
-  console.log("id in profile",id)
+
   const EditPro = () => {
     setEditpro(true);
   };
@@ -144,17 +152,20 @@ export const Profile = () => {
             </div>
           </i>
         </div> */}
-        <DropdownIcon>
-        <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-        </DropdownIcon>
+      <Icon marginLeft="350px" marginTop="-50px" onClick={()=>setPopprfile(true)} className="fa-solid fa-ellipsis dot_dot_profile"></Icon>
+      {profile?.id===decoded.user_id?
+     <DarkBtn marginLeft="700px" marginTop="-30px" onClick={()=>setAlbum(true)}>Add Album</DarkBtn>
+     :
+     null
+     }
+
 
         <H4 font="italic small-caps bold 16px/2 cursive">
           Hii! I'm {profile?.username}
         </H4>
 
         <Flex flexDirection="column">
-          <H6 fontWeight="bold">20 friends </H6>
+          <H6 fontWeight="bold">{frndrequest?.filter(fil=>fil.reciever.id===decoded.user_id).length}&nbsp; friends </H6>
         </Flex>
       </div>
 
@@ -201,10 +212,23 @@ export const Profile = () => {
             Feedbacks
           </TabPanel>
           <TabPanel value={value} index={3}>
-            <Friends />
+            <Friends profile={profile}/>
           </TabPanel>
         </Box>
       </Flex>
+      {popupprofile?
+    <div className="popup-album" style={{ margin:"auto"}}>
+    {/* <i style={{color:"red",margin:"auto"}} onClick={()=>setPopprfile(false)} className="fa fa-close"></i> */}
+    <ReportProfile setPopprfile={setPopprfile} profile={profile}/>
+    </div>: null
+    }
+
+{addalbum?
+    <div className="popup-album" style={{ margin:"auto"}}>
+    {/* <i style={{color:"red",margin:"auto"}} onClick={()=>setPopprfile(false)} className="fa fa-close"></i> */}
+    <AddAlbum setAlbum={setAlbum} profile={profile}/>
+    </div>: null
+    }
     </div>
   );
 };

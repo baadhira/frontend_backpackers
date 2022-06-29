@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React from 'react'
 import {BASE_URL} from '../../BaseUrl'
+
+
 export const getAllPeople = () => {
   var token = localStorage.getItem("authToken");
 

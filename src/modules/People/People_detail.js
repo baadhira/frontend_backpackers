@@ -24,6 +24,11 @@ import { BASE_URL } from "../../BaseUrl";
 import { getAllPeople, getOnePeople } from "./Method_people";
 import { DropdownIcon } from "../../components/Dropdown/Dropdown";
 import { SendHost } from "../Notifications/SendHost";
+import { ReportProfile } from "../Profile/ReportProfile";
+import { PopupPeople } from "./PopupPeople";
+import { AlbumPeople } from "./AlbumPeople";
+import { AboutPeople } from "./AboutPeople";
+import { FriendsPeople } from "./FriendsPeople";
 
 export const People_detail = () => {
   const [profile, setProfile] = useState();
@@ -31,7 +36,8 @@ export const People_detail = () => {
   const [frndrequest, SetFrndRequest] = useState();
   const [sendhost,setSendhost] = useState(false);
   const [hostrequest, setHostRequest] = useState();
-
+  const [popupprofile,setPopprfile]= useState(false)
+  
   const { id } = useParams();
   const [peopledetail, setPeopleDetail] = useState();
   const [allpeople, setAllPeople] = useState();
@@ -44,18 +50,17 @@ export const People_detail = () => {
   useEffect(() => {
     getFriendRequests().then((res) => {
       SetFrndRequest(res.data);
-      console.log("friend requests details...", res.data);
+      console.log("setfrnd request",res.data);
     });
     getHostRequests().then((res)=>{
       setHostRequest(res.data);
-      console.log("host requests details...", res.data);
+      console.log("host request",res.data);
       
     })
   }, [SetFrndRequest]);
      useEffect(() => {
      getFriendRequests().then((res) => {
        SetFrndRequest(res.data);
-       console.log("friend requests details...", res.data);
      });
    }, [SetFrndRequest]);
    
@@ -68,14 +73,14 @@ export const People_detail = () => {
 
      getOnePeople(id).then((res) => {
        setPeopleDetail(res.data);
-      //  console.log("one people", res.data);
+       console.log("one people", res.data);
      });
    }, [setPeopleDetail]);
-   console.log("frnd requests in people detail..",frndrequest?.filter(
-                  (fil) =>
-                    fil.sender.id === decoded.user_id &&
-                    fil.reciever.id === JSON.parse(id)))
-    console.log("reciever id",id)
+  //  console.log("frnd requests in people detail..",frndrequest?.filter(
+  //                 (fil) =>
+  //                   fil.sender.id === decoded.user_id &&
+  //                   fil.reciever.id === JSON.parse(id)))
+  //   console.log("reciever id",id)
 
   useEffect(() => {
     getProfile().then((response) => {
@@ -90,23 +95,7 @@ export const People_detail = () => {
   //   ?.filter((fil) => fil.id === peopledetail?.id).map(data=>data.username))
 
 
-  const onSubmit = () => {
-    const config = {
-      headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    axios.post(
-      `${BASE_URL}api/user/friendrequests/`,
-      {
-        sender: decoded.user_id,
-        reciever: id,
-        accept: "false",
-      },
-      config
-    );
-  };
+ 
   console.log("id in profile",id)
   const EditPro = () => {
     setEditpro(true);
@@ -187,7 +176,7 @@ export const People_detail = () => {
             </div>
           </i>
         </div> */}
-        {decoded.user_id===JSON.parse(id)?
+        {/* {decoded.user_id===JSON.parse(id)?
                     null:
         <DropdownIcon>
 
@@ -205,7 +194,8 @@ export const People_detail = () => {
               <a >Report</a>
 
         </DropdownIcon>
-}
+} */}
+<Icon marginLeft="350px" marginTop="-50px" onClick={()=>setPopprfile(true)} className="fa-solid fa-ellipsis"></Icon>
         <H4 font="italic small-caps bold 16px/2 cursive">
           Hii! I'm {allpeople
     ?.filter((fil) => fil.id === peopledetail?.id).map(data=>data.username)}
@@ -250,16 +240,16 @@ export const People_detail = () => {
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
-            <Album />
+            <AlbumPeople peopledetail={peopledetail}/>
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <About />
+            <AboutPeople peopledetail={peopledetail}/>
           </TabPanel>
           <TabPanel value={value} index={2}>
             Feedbacks
           </TabPanel>
           <TabPanel value={value} index={3}>
-            <Friends />
+            <FriendsPeople peopledetail={peopledetail}/>
           </TabPanel>
         </Box>
       </Flex>
@@ -270,6 +260,13 @@ export const People_detail = () => {
     <SendHost/>
     </div>: null
     }
+    {popupprofile?
+    <div className="popup-album" style={{ margin:"auto"}}>
+    {/* <i style={{color:"red",margin:"auto"}} onClick={()=>setPopprfile(false)} className="fa fa-close"></i> */}
+    <PopupPeople setPopprfile={setPopprfile} peopledetail={peopledetail} frndrequest={frndrequest}/>
+    </div>: null
+    }
     </div>
+    
   );
 };

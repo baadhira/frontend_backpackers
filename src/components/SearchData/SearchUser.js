@@ -90,12 +90,11 @@ import { Flex } from "../UI/Flex/Flex";
 import { getQueries } from "../../modules/Queries/MethodQuery/MethodQueries";
 import { getAllPeople } from "../../modules/People/Method_people";
 import './SearchUser.css'
-export const SearchUser = ({ searchTerm, searchResult,hide,setHide }) => {
-  const { data: findpeople } = useQuery("findpeople", getAllPeople);
+import { useQueryFetch } from "../../Hooks/useQueryFetch";
+export const SearchUser = ({ searchTerm, searchResult,hide,setHide,clearSearch }) => {
+
+  const {fetchData:findpeople}=useQueryFetch("api/user/allusers/")
   
-
-  console.log("findpeople", findpeople);
-
   return (
     <div>
       {hide?
@@ -109,11 +108,11 @@ export const SearchUser = ({ searchTerm, searchResult,hide,setHide }) => {
                 ev.username
                   .toString()
                   .toLowerCase()
+                  .includes(searchTerm.toLowerCase()) ||
+                ev.born_location
+                  .toString()
+                  .toLowerCase()
                   .includes(searchTerm.toLowerCase())
-                // ev.username
-                //   .toString()
-                //   .toLowerCase()
-                //   .includes(searchTerm.toLowerCase())
               ) {
                 return <h2>val</h2>;
               }
@@ -135,10 +134,11 @@ export const SearchUser = ({ searchTerm, searchResult,hide,setHide }) => {
                 >
                   <Flex flexDirection="column">
                     <H5
-                      onClick={() => setHide(false)}
+                      onClick={() => clearSearch(false)}
                       margin="0 5px"
                       color="black"
                       fontWeight="bold"
+                  
                     >
                       {data?.username}
                     </H5>

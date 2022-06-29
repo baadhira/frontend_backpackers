@@ -15,7 +15,8 @@ export const PrimaryBtn = (props) => {
         top: props.top,
         left: props.left,
         bottom: props.bottom,
-        backgroundColor: props.backgroundColor
+        backgroundColor: props.backgroundColor,
+        disabled: props.disabled
     }
 
 
@@ -92,7 +93,9 @@ export const DarkBtn = (props) => {
         left: props.left,
         bottom: props.bottom,
         backgroundColor: props.backgroundColor,
-        color: props.color
+        color: props.color,
+        marginLeft:props.marginLeft,
+        marginTop:props.marginTop
     }
 
 

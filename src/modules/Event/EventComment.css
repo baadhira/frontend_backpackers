@@ -6,6 +6,46 @@
     align-items: flex-start;
     height:fit-content;
   }
+  
+.comment-thread-event {
+  width: 750px;
+  /* max-width: 100%; */
+padding:20px;
+  height:400px;
+  overflow-y: scroll;
+  /* border-radius: 50px; */
+  margin-top:20px;
+  /* padding: 0 30px; */
+  background-color: white ;
+  border: 1px ;
+
+}
  
+.comments-event{
+
+	/* border-radius:40px; */
+  /* margin-top:50px; */
+  /* margin-top: 50px; */
+  /* background-color:"red" */
+
+}
+
+
+
+.popevent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(95, 91, 91, 0.801);
+  
+
+}
+
 
   

@@ -16,7 +16,11 @@ import { People_detail} from "../modules/People/People_detail";
 import { PlaceDetails} from "../modules/Place/PlaceDetails";
 import { Signup } from "../modules/Auth/Signup";
 import { Login } from "../modules/Auth/Login";
-
+import { AllPeople } from "../modules/People/AllPeople";
+import { HostRequestDetailReply } from "../modules/Notifications/HostRequestDetailReply";
+import ChatUi from "../components/chat/ChatUi";
+import ChatTest from '../components/ChatTest'
+import { Loader } from "../components/Loader";
 
 
 
@@ -60,6 +64,11 @@ export const elements=[
         path:'/profile', 
         element:<Profile/>
     },
+    // {
+    //     isAuth:true,
+    //     path:'/profile/:id', 
+    //     element:<Profile/>
+    // },
     {
         isAuth:true,
         path:'/account', 
@@ -92,6 +101,11 @@ export const elements=[
     },
     {
         isAuth:true,
+        path:'/host_request_detail_reply/:id', 
+        element:<HostRequestDetailReply/>
+    },
+    {
+        isAuth:true,
         path:'/qdt', 
         element:<QueryToolDetail/>
     },
@@ -99,6 +113,11 @@ export const elements=[
         isAuth:true,
         path:'/place/:id', 
         element:<PlaceDetails/>
+    },
+    {
+        isAuth:true,
+        path:'allpeople', 
+        element:<AllPeople/>
     },
     {
         isAuth:false,
@@ -109,6 +128,21 @@ export const elements=[
         isAuth:false,
         path:'/login', 
         element:<Login/>
+    },
+    {
+        isAuth:true,
+        path:'/chat', 
+        element:<ChatUi/>
+    },
+    {
+        isAuth:false,
+        path:'/chattest', 
+        element:<ChatTest/>
+    },
+    {
+        isAuth:false,
+        path:'/loader', 
+        element:<Loader/>
     }
 ]
 

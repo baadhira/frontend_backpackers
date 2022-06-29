@@ -9,10 +9,12 @@ import { SearchQuery } from "../SearchData/SearchQuery";
 import { SearchHost } from "../SearchData/SearchHost";
 import { SearchEvent } from "../SearchData/SearchEvent";
 import { SearchUser } from "../SearchData/SearchUser";
+import { SearchContent } from "./SearchContent";
 
-export const SearchBar = ({ explore }) => {
+export const SearchBar = () => {
   const [searchTerm, SetSearchTerm] = useState("");
-
+  const [explore,setExplore] = useState("User")
+  
   const [searchState, setSearchState] = useState(false);
 
   const { data: event } = useQuery("event", getEvents);
@@ -49,6 +51,7 @@ export const SearchBar = ({ explore }) => {
   };
 
   const clearSearch = (e) => {
+    setSearchState(false)
     SetSearchTerm("");
   };
 
@@ -67,16 +70,19 @@ export const SearchBar = ({ explore }) => {
 
         <i style={closeStyle} onClick={clearSearch} class="fas fa-times"></i>
       </div>
+      {searchState?
+  <SearchContent 
+  explore={explore}
+  setExplore={setExplore} 
+  SetSearchTerm={SetSearchTerm}
+   searchTerm={searchTerm} 
+   searchResult={searchResult}
+   hide={hide}
+  setHide={setHide}
+  clearSearch={clearSearch}
+   />: null
+      }
 
-      {explore == "Find Host" ? (
-        <SearchHost searchTerm={searchTerm} searchResult={searchResult} />
-      ) : explore == "Find Query" ? (
-        <SearchQuery searchTerm={searchTerm} searchResult={searchResult} />
-      ) : explore == "Find Event" ? (
-        <SearchEvent searchTerm={searchTerm} searchResult={searchResult} />
-      ) : explore == "Find User" ? (
-        <SearchUser hide={hide} setHide={setHide} searchTerm={searchTerm} searchResult={searchResult} />
-      ) : null}
     </div>
   );
 };

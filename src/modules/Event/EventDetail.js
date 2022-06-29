@@ -6,8 +6,10 @@ import { Icon } from "../../components/Icon/Icon";
 import { TextArea } from "../../components/Input/Input";
 import { H3, H4, H5, H6 } from "../../components/Text/Text";
 import { Flex } from "../../components/UI/Flex/Flex";
+import dateFormat from 'dateformat';
 import {
   getComments,
+  getEventComments,
   getEvents,
   getJoiners,
   getoneEvents,
@@ -27,6 +29,7 @@ import { Grid } from "../../components/UI/Grid/Grid";
 import { EventComment } from "./EventComment";
 import { JoinedPeople } from "./JoinedPeople";
 import { useQuery } from "react-query";
+import { ReportEvent } from "./ReportEvent";
 
 function EventDetail() {
   const [eventdetails, setEventdetails] = useState();
@@ -35,8 +38,19 @@ function EventDetail() {
   const { id } = useParams();
   const [showComment, setShowComment] = useState(false);
   const [showJoiners, setShowJoiners] = useState(false);
+  const [report,setReport] = useState(false);
+  const [comments, setComments]=useState();
+
+
 
   const [event, setEvent] = useState();
+  useEffect(() => {
+    getEventComments().then((response) =>{
+      setComments(response.data)
+      
+
+    })
+  },[setComments])
 
   const OneEvent = useCallback(() => {
     getoneEvents(id).then((res) => {
@@ -62,7 +76,7 @@ function EventDetail() {
       
     });
   }, [setEventdetails, setJoinedpeople, setEventdetails]);
- 
+
 
   var token = localStorage.getItem("authToken");
   var decoded = jwt_decode(token);
@@ -144,9 +158,9 @@ function EventDetail() {
       <Container>
         <Row>
           <Col
-            lg={3}
+            lg={2}
             style={{ height: "auto" }}
-            className="row justify-content-between"
+            className="eventright row "
           >
             <div className="event-top-col col-md-5 col-lg-12">
               <h4 className="organizer">Organizer</h4>
@@ -155,9 +169,12 @@ function EventDetail() {
                 src={require("../../assets/profile_pic/johnson-martin-zpq2DMidOY0-unsplash.jpg")}
                 alt=""
               />
-              <h4 className="organizer-name">
+              <h6 className="organizer-name">
                 {eventdetails?.author.username}
-              </h4>
+              </h6>
+              <h6 style={{color: "dodgerblue"}} className="organizer-name">
+                {eventdetails?.author.born_location}
+              </h6>
               {/* <Flex margin="0px 20%"
               display="flex"
               flex-grow="row"
@@ -200,7 +217,11 @@ function EventDetail() {
             </Flex> */}
             </div>
 
-            <div className="sticky-outer col-md-5 col-lg-12">
+        
+            
+         
+
+            {/* <div className="sticky-outer col-md-5 col-lg-12">
               <div className="sticky">
                 <svg width="0" height="0">
                   <defs>
@@ -226,7 +247,7 @@ function EventDetail() {
                   <H6 color="black">- {eventdetails?.end_time} -</H6>
                 </div>
               </div>
-            </div>
+            </div> */}
           </Col>
 
           <Col lg={7}>
@@ -238,7 +259,7 @@ function EventDetail() {
               <div style={{ position: "relative" }}>
                 <img
                   className="eventdetail-img"
-                  style={{ borderRadius: "20px", height: "60vh" }}
+                  style={{ borderRadius: "20px" }}
                   src={eventdetails?.image}
                   alt=""
                 />
@@ -254,9 +275,95 @@ function EventDetail() {
                 >
                   {eventdetails?.event_name}
                 </H4>
+                {/* <div style={{display: 'flex', flexDirection: 'row'}}>
+                <i class="fa-solid fa-clock"></i>
+                <H6
+                  margin="-20px"
+                  position="absolute"
+                  bottom="30px"
+                  left="22%"
+                  transform="translate(-50%)"
+                  color="white"
+                  fontWeight="bold"
+                >
+                  {eventdetails?.start_date}
+                </H6>
+                <H6
+                  margin="-20px"
+                  position="absolute"
+                  bottom="30px"
+                  left="46%"
+                  transform="translate(-50%)"
+                  color="white"
+                  fontWeight="bold"
+                >
+                  ||{eventdetails?.start_time}
+                </H6>
+                <H6
+                  margin="-20px"
+                  position="absolute"
+                  bottom="30px"
+                  left="50%"
+                  transform="translate(-50%)"
+                  color="white"
+                  fontWeight="bold"
+                >
+                  {eventdetails?.end_date}
+                </H6>
+                <H6
+                  margin="-20px"
+                  position="absolute"
+                  bottom="30px"
+                  left="73%"
+                  transform="translate(-50%)"
+                  color="white"
+                  fontWeight="bold"
+                >
+                  ||{eventdetails?.end_time}
+                </H6>
+                </div> */}
               </div>
+              {/* <div
+              className="eventDescription"
+                color="black"
+                borderRadius="20px"
+                backgroundImage="linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%)"
+                padding="10px"
+                backgroundColor="#b8c6db"
+                margin="10px"
+              > 
+              <div style={{display: "flex", flexDirection: "row",alignItems:"flex-end"}}>
+                  <Icon margin="auto" className="fa-solid fa-ellipsis" onClick={() => setReport(true)} ></Icon>  
+                  </div>            
+              </div> */}
 
-              <H5
+              <div
+              className="eventDetails"
+                color="black"
+                // borderRadius="20px"
+                // backgroundImage="linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%)"
+                padding="10px"
+                backgroundColor="black"
+                margin="10px"
+              >
+                <h6 style={{marginLeft:"20px"}}>
+              <b>Starts On:</b>&nbsp;&nbsp;&nbsp;
+              {eventdetails?.start_time}&nbsp;&nbsp;&nbsp;
+              {dateFormat(eventdetails?.start_date, "dddd, mmmm dS, yyyy")}
+                
+                </h6>
+                <h6 style={{marginLeft:"20px"}}>
+                <b>Ends on:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{eventdetails?.end_time}&nbsp;&nbsp;&nbsp;{dateFormat(eventdetails?.end_date, "dddd, mmmm dS, yyyy")}
+
+         
+              </h6>
+
+
+
+                
+              </div>
+              <div
+              className="eventDescription"
                 color="black"
                 borderRadius="20px"
                 backgroundImage="linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%)"
@@ -264,8 +371,11 @@ function EventDetail() {
                 backgroundColor="#b8c6db"
                 margin="10px"
               >
+                <p style={{marginLeft:"20px"}}>
                 {eventdetails?.description}
-              </H5>
+                </p>
+                
+              </div>
               <H6 fontWeight="bold" color="red" margin="10px">
                 {eventdetails?.limit_attendees} slots left!!
               </H6>
@@ -299,13 +409,16 @@ function EventDetail() {
                     borderRadius: "100%",
                   }}
                 >
-                  <H5 color="white">{eventdetails?.comments_amount}</H5>
+                  {console.log("comment number",comments?.filter(fil=>fil.from_event===eventdetails?.id).length)}
+                   
+                  <H5 color="white">{comments?.filter(fil=>fil.from_event===eventdetails?.id).length}</H5>
+                
                 </div>
               </div>
               {eventdetails?.author.id ===
                 decoded.user_id ? null :
                
-              <DarkBtn onClick={(event_id) => JoinEvent((event_id = eventdetails?.id))} margin="10px">Join</DarkBtn>
+              <DarkBtn onClick={(event_id) => JoinEvent((event_id = eventdetails?.id))} margin="12px">Join</DarkBtn>
 
     
                 }
@@ -317,7 +430,7 @@ function EventDetail() {
                       className="fa fa-close"
                       onClick={() => setShowComment(false)}
                     ></i>
-                    <EventComment setShowComment={setShowComment} />
+                    <EventComment eventdetails={eventdetails} setShowComment={setShowComment} />
                   </div>
                 </div>
               ) : null}
@@ -334,6 +447,16 @@ function EventDetail() {
               ) : null}
             </Flex>
           </Col>
+
+       
+
+          {report?
+    <div className="popup-album">
+    <ReportEvent setReport={setReport} />
+    </div>: null
+    }
+
+
           <Col>
             <H5 lg={2}>Suggested Events</H5>
             {/* <div class="card w-40 ">
